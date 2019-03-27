@@ -1,0 +1,8 @@
+*
+.gitignore
+!PKGBUILD
+!.SRCINFO
+pkg
+src
+*.tar.xz
+fail2ban-git
