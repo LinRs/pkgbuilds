@@ -1,7 +1,7 @@
 # Maintainer: Craig Jackson <tapocol@protonmail.com>
 
 pkgname=innoextract-git
-pkgver=r703.c9dcf5f
+pkgver=1.7.r16.g38ae68f
 pkgrel=1
 pkgdesc="A tool to extract installers created by Inno Setup"
 url='https://constexpr.org/innoextract/'
@@ -17,7 +17,10 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$pkgname"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  ( set -o pipefail
+    git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  )
 }
 
 build() {
