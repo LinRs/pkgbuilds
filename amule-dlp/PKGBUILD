@@ -1,4 +1,4 @@
-# Maintainer: Lin Ruoshui <lin[dot]ruohshoei[at]gmail[dot]com>
+# Maintainer: LinRs <20455421+LinRs at users.noreply.github.com>
 # Contributor: Giovanni Scafora <giovanni@archlinux.org>
 # Contributor: Henrik Ronellenfitsch <searinox@web.de>
 # Contributor: Alessio Sergi <sergi.alessio {at} gmail.com>
@@ -13,7 +13,7 @@ arch=('i686' 'x86_64')
 url="http://www.amule.org"
 license=('GPL')
 depends=('wxgtk2'  'gd' 'geoip' 'libupnp' 'crypto++' 'libsm') #'wxgtk2.8'
-optdepends=('antileech')
+optdepends=('antileech: AntiLeech Library support')
 provides=(amule)
 conflicts=(amule amule-dlp-git amule-git)
 install=amule.install
