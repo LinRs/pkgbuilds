@@ -1,14 +1,10 @@
 pkgbase = eb-library
 	pkgdesc = EB library for several dictionary formats, including EPWING
 	pkgver = 4.4.3
-	pkgrel = 2
+	pkgrel = 3
 	url = https://web.archive.org/web/20120401145849/http://www.sra.co.jp/people/m-kasahr/eb/
 	arch = x86_64
 	license = BSD
-	makedepends = autoconf
-	makedepends = automake
-	depends = perl
-	depends = gcc-libs
 	depends = zlib
 	options = !libtool
 	source = ftp://ftp.sra.co.jp/pub/misc/eb/eb-4.4.3.tar.bz2
