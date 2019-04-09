@@ -2,12 +2,13 @@
 # Contributor: mickele <mimocciola@yahoo.com>
 pkgname=('gmsh' 'gmsh-docs')
 pkgver=4.2.3
-pkgrel=1
-pkgdesc="An automatic 3D finite element mesh generator with pre and post-processing facilities."
+pkgrel=2
+pkgdesc="Automatic 3D finite element mesh generator with pre- and post-processing facilities"
 arch=('x86_64')
 url="http://gmsh.info/"
 license=('custom')
-makedepends=('cmake' 'desktop-file-utils' 'sed' 'swig' 'texlive-core')
+makedepends=('cmake' 'desktop-file-utils' 'sed' 'swig' 'texlive-core' 'fltk'
+	     'lapack' 'med=3.3.1' 'opencascade' 'cairo' 'hdf5-openmpi')
 options=(!emptydirs)
 source=("${url}src/${pkgname}-${pkgver}-source.tgz" gmsh.desktop gmsh.completion)
 sha256sums=('58a8c8828b66e77680b52feb8a91fb4790d0a93906e411f3bfa1928864e52858'
@@ -46,12 +47,12 @@ package_gmsh() {
             'python: for onelab.py')
 
    cd "${srcdir}/${pkgname}-${pkgver}-source/build"
-   make DESTDIR=${pkgdir} install
+   make DESTDIR="${pkgdir}" install
    mv "${pkgdir}/usr/lib64" "${pkgdir}/usr/lib"
    install -D -m644 "${pkgdir}/usr/lib/gmsh.py" "${pkgdir}/usr/lib/python2.7/site-packages/gmsh.py"
    install -D -m644 "${pkgdir}/usr/lib/gmsh.py" "${pkgdir}/usr/lib/python3.7/site-packages/gmsh.py"
    rm "${pkgdir}/usr/lib/gmsh.py"
-   rm -rf "${pkgdir}/home"
+   rm -rf "${pkgdir}/{home,build}"
 
    install -d "${pkgdir}/usr/share/pixmaps/${pkgname}"
    install -m644 ../utils/icons/*.png "${pkgdir}/usr/share/pixmaps/${pkgname}"
@@ -64,7 +65,7 @@ package_gmsh() {
    install -D -m 644 "../CREDITS.txt" "${pkgdir}/usr/share/licenses/$pkgname/CREDITS.txt"
    install -D -m644 $srcdir/gmsh.completion $pkgdir/etc/bash_completion.d/gmsh
 
-   rm -rf ${pkgdir}/usr/share/doc
+   #rm -rf ${pkgdir}/usr/share/doc
 }
 
 package_gmsh-docs() {
