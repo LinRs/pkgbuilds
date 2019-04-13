@@ -4,7 +4,7 @@
 pkgname=libpurple-lurch-git
 _pkgname=lurch
 pkgver=v0.6.8.r0.g3f74880
-pkgrel=2
+pkgrel=3
 pkgdesc='Plugin for libpurple (Pidgin, Adium, etc) implementing OMEMO (using axolotl)'
 arch=('i686' 'x86_64')
 url="https://github.com/gkdr/lurch"
@@ -12,8 +12,12 @@ license=('GPL')
 depends=('libpurple' 'mxml' 'libxml2' 'sqlite' 'libgcrypt')
 makedepends=('git' 'cmake')
 optdepends=('libpurple-carbons-git: message carbons support')
-source=("$_pkgname::git+https://github.com/gkdr/lurch.git")
-sha256sums=('SKIP')
+source=("$_pkgname::git+https://github.com/gkdr/lurch.git"
+	"git+https://github.com/gkdr/axc"
+	"git+https://github.com/gkdr/libomemo")
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP')
 
 pkgver () {
   cd "$srcdir/$_pkgname"
@@ -25,10 +29,11 @@ pkgver () {
 
 prepare() {
   cd "$srcdir/$_pkgname"
-  msg2 "Getting submodules"
+  #msg2 "Getting submodules"
   # .gitmodules specifies relative paths that don't resolve correctly on a local clone
-  git config --file=.gitmodules submodule."lib/axc".url "https://github.com/gkdr/axc"
-  git config --file=.gitmodules submodule."lib/libomemo".url "https://github.com/gkdr/libomemo"
+  #git submodule init
+  git config --file=.gitmodules submodule."lib/axc".url "$srcdir/axc"
+  git config --file=.gitmodules submodule."lib/libomemo".url "$srcdir/libomemo"
   git submodule update --init --recursive
 }
 
