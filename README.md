@@ -17,4 +17,3 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the [GNU
 General Public
 License](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) for
 more details.
-
